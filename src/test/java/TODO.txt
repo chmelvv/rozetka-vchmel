@@ -7,12 +7,12 @@
 To get all manufactures use List<WebElements> listOfManufactures = driver.findElements
 +6. After checking that all 8 manufactures are present, loop through the all manufactures and if it contains Apple - click Apple manufacture
 +7. Verify that the page is Ноутбуки Apple
-8. Click "Выводить: от дорогих к дешевым"
-9. Verify that there is Apple MacBook Pro Retina 15" (Z0PU002JE)
-10. Click boolean check "К сравнению" for Apple MacBook Pro Retina 15" (Z0PU002JE)
-11. On the right side of the page should appear "Cписок сравнения:" that contains Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия!(you should verify it :) )
-12.Verify that there is Apple MacBook Pro Retina 15" (ME294UA/A)
-13.Click boolean check "К сравнению" for Apple MacBook Pro Retina 15" (ME294UA/A)
++8. Click "Выводить: от дорогих к дешевым"
++9. Verify that there is Apple MacBook Pro Retina 15" (Z0PU002JE)
++10. Click boolean check "К сравнению" for Apple MacBook Pro Retina 15" (Z0PU002JE)
++11. On the right side of the page should appear "Cписок сравнения:" that contains Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия!(you should verify it :) )
++12.Verify that there is Apple MacBook Pro Retina 15" (ME294UA/A)
++13.Click boolean check "К сравнению" for Apple MacBook Pro Retina 15" (ME294UA/A)
 14 On the right side of the page should appear "Cписок сравнения:"  that contains  Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия! and
 Apple MacBook Pro Retina 15" (ME294UA/A) Официальная гарантия! (you should verify it :) )
 15.Click "В сравнении" from one of the product's name above

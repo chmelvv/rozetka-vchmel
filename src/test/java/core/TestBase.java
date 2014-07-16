@@ -48,8 +48,8 @@ public class TestBase {
         return headerH1.getText();
     }
 
-    @AfterSuite
-    public void tearDown()
+   @AfterSuite
+   public void tearDown()
     {
         webDriver.quit();
     }
