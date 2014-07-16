@@ -47,7 +47,7 @@ public class AlertBox {
         Alert alert = driver.switchTo().alert();
 
         String alertText = alert.getText();
-
+        // how to click on JS ALert window
         alert.accept();
 
         assertTrue(alertText.equals("Thanks... I feel much better now!"));

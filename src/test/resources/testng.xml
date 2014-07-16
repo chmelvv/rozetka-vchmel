@@ -7,7 +7,7 @@
         <classes>
 
 
-            <class name="ui_tests.SmartphoneSearchTest"/>
+            <class name="ui_tests.TestPage"/>
 
             </classes>
     </test>

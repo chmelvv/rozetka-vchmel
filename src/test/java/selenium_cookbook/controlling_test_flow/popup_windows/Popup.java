@@ -43,7 +43,7 @@ public class Popup {
     @Test
     public void testWindowPopUp() {
 
-        String parentWindowId = driver.getWindowHandle();
+        String parentWindowId = driver.getWindowHandle();//save page ID
 
         WebElement popUpWindow = driver.findElement(By.cssSelector(".result>input"));
 

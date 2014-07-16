@@ -47,7 +47,7 @@ public class PopupByContext {
 
         popupUrl.click();
 
-        Set<String> allWindowsId = driver.getWindowHandles();
+        Set<String> allWindowsId = driver.getWindowHandles();//get all opentabs/windows
 
         if (!allWindowsId.isEmpty()) {
 
