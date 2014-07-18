@@ -13,13 +13,16 @@ To get all manufactures use List<WebElements> listOfManufactures = driver.findEl
 +11. On the right side of the page should appear "Cписок сравнения:" that contains Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия!(you should verify it :) )
 +12.Verify that there is Apple MacBook Pro Retina 15" (ME294UA/A)
 +13.Click boolean check "К сравнению" for Apple MacBook Pro Retina 15" (ME294UA/A)
-14 On the right side of the page should appear "Cписок сравнения:"  that contains  Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия! and
-Apple MacBook Pro Retina 15" (ME294UA/A) Официальная гарантия! (you should verify it :) )
-15.Click "В сравнении" from one of the product's name above
-16. Verify that the page contains "Сравнение товаров"
-17. Verify that the page "Добавить модель" should contain "Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия! and
++14 On the right side of the page should appear "Cписок сравнения:"  that contains
+Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия! and
 Apple MacBook Pro Retina 15" (ME294UA/A) Официальная гарантия!
-18.Close browser
+(you should verify it :) )
+
++15.Click "В сравнении" from one of the product's name above
+16. Verify that the page contains "Сравнение товаров"
++17. Verify that the page "Сравнение товаров" should contain "Apple MacBook Pro Retina 15" (Z0PU002JE) Официальная гарантия! and
+Apple MacBook Pro Retina 15" (ME294UA/A) Официальная гарантия!
++18.Close browser
 ================
 Всі дані завантажуються зовні
 Для всіх сторінок створено відповідні об"єкти

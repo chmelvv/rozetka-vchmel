@@ -3,22 +3,27 @@ package ui_tests;
 import core.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
+import pages.ComparePage;
 import pages.MainPage;
 import pages.VendorPage;
 import utils.Log4Test;
 
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
+import static ui_tests.TestData.model1;
+import static ui_tests.TestData.model2;
+
+
 
 public class TestPage extends TestBase {
 
     MainPage mainPage = new MainPage();
     CategoryPage categoryPage = new CategoryPage();
     VendorPage vendorPage = new VendorPage();
+    ComparePage comparePage = new ComparePage();
 
     @Test
     public void setUpPreconditions() {
@@ -34,16 +39,9 @@ public class TestPage extends TestBase {
         //check that page called "Notebooks"
         assertTrue(categoryPage.getHeader().equals(category));
 
-        String activeDivTabClassName = "m-main-i active";
+        //check that appropriate Tab is active
         String activeTabName = "Ноутбуки, планшеты и компьютеры";
-        //check that Notebook tab is active
-//        <div class="m-main-i active">
-//           <a class="m-main-title" onclick="false" name="active-elem" href="http://rozetka.com.ua/computers-notebooks/c80253/">
-//               <span class="m-main-title-text">Ноутбуки, планшеты и компьютеры</span>
-        // We find span element by text, that find its parent of parent by "/../.."
-        WebElement divTab = webDriver.findElement(By.xpath("//span[.='" + activeTabName + "']/../.."));
-        Log4Test.info("Active Tab text: " + divTab.getText());
-        Assert.assertEquals(divTab.getAttribute("class"), activeDivTabClassName);
+        assertEquals(categoryPage.getActiveTabName(), activeTabName);
     }
 
     @Test (dependsOnMethods = {"checkNotebookPage"})
@@ -83,9 +81,9 @@ public class TestPage extends TestBase {
         List<WebElement> listOfManufactures = webDriver.findElements(
                 By.xpath("//h4[contains(text(), '" + filterHeader + "')]/following-sibling::ul/li/a"));
        //Check is not null and its size
-        Assert.assertNotNull(listOfManufactures);
+        assertNotNull(listOfManufactures);
         Log4Test.info("List of manufactures is empty? " + listOfManufactures.isEmpty());
-        Assert.assertEquals(listOfManufactures.size(), filtersAmount);
+        assertEquals(listOfManufactures.size(), filtersAmount);
         Log4Test.info("Manufactures list size: " + listOfManufactures.size());
         Log4Test.info("--------------------------");
 
@@ -102,38 +100,41 @@ public class TestPage extends TestBase {
     @Test (dependsOnMethods = {"check8Manufactures"})
     public void checkVendorPage(){
         String pageTitle = "Ноутбуки Apple";
-        Assert.assertEquals(vendorPage.getHeader(), pageTitle);
+        assertEquals(vendorPage.getHeader(), pageTitle);
+        Log4Test.info("--------------------------");
     }
 
     @Test (dependsOnMethods = {"checkVendorPage"})
     public void checkAndAddForCompare() {
-      //sort page as needed
-      String sortBy = "от дорогих к дешевым";
-      vendorPage.sortBy(sortBy);
+       //sort page as needed
+       String sortBy = "от дорогих к дешевым";
+       vendorPage.sortBy(sortBy);
+       Log4Test.info("--------------------------");
 
+       assertTrue(vendorPage.isContain(model1));
+       //add needed model to comparison
+       vendorPage.addToCompare(model1);
+       //check is it added
+       assertTrue(vendorPage.isInComparison(model1));
+       Log4Test.info("--------------------------");
 
-        String model2 = "Apple MacBook Pro Retina 15\" (ME294UA/A)";
-        Assert.assertTrue(vendorPage.isContain(model2));
+        //check if needed model exists on page
+        assertTrue(vendorPage.isContain(model2));
         //add needed model to comparison
         vendorPage.addToCompare(model2);
         //check is it added
-        Assert.assertTrue(vendorPage.isInComparison(model2));
+        assertTrue(vendorPage.isInComparison(model2));
+        Log4Test.info("--------------------------");
+    }
 
-      //check if needed model exists on page
-      String model1="Apple MacBook Pro Retina 15\" (Z0PU002JE)";
-      Assert.assertTrue(vendorPage.isContain(model1));
-      //add needed model to comparison
-      vendorPage.addToCompare(model1);
-      //check is it added
-      Assert.assertTrue(vendorPage.isInComparison(model1));
-
-
-        String model3 = "Apple MacBook Air 13\" (MD761UA/A)";
-        Assert.assertTrue(vendorPage.isContain(model3));
-        //add needed model to comparison
-        vendorPage.addToCompare(model3);
-        //check is it added
-        Assert.assertTrue(vendorPage.isInComparison(model3));
+    @Test (dependsOnMethods = {"checkAndAddForCompare"})
+    public void checkComparePage(){
+        String header = "Сравнение товаров";
+        String compareLink = webDriver.findElement(By.xpath("//span[contains(text(), 'Сравнить' )]/..")).getAttribute("href");
+        comparePage.open(compareLink);
+        assertTrue(comparePage.getHeader().contains(header));
+        assertTrue(comparePage.isContain(model1));
+        assertTrue(comparePage.isContain(model2));
     }
 
 
